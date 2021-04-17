@@ -34,6 +34,7 @@ var cards = document.querySelectorAll(".closed-card");
 var cardOpen = new Array(cards.length);
 var cardClickable = new Array(cards.length);
 var previousCard = -1;
+var closeTimerSet = false;
 
 var cardInfos = [
 	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
@@ -55,6 +56,11 @@ for (let i = 0; i < cards.length; i++) {
 			return;
 		}
 
+		// If close timer is set, do nothing until it works
+		if (closeTimerSet == true) {
+			return;
+		}
+
 		// Close the card, if it's already opened
 		if (cardOpen[i] == true) {
 			// Close the card
@@ -73,11 +79,14 @@ for (let i = 0; i < cards.length; i++) {
 			cardClickable[i] = false;
 			previousCard = -1;
 		} else { // Cards not match
+			closeTimerSet = true;
+
 			// Wait 500ms and close them both
 			setTimeout(function () {
 				closeCard(i);
 				closeCard(previousCard);
 				previousCard = -1;
+				closeTimerSet = false;
 			}, 500);
 		}
 	}
