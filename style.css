@@ -1,0 +1,29 @@
+body {
+    background-color: hsl(37, 18%, 91%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+header {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+footer {
+    margin-top: 35px;
+    margin-bottom: 60px;
+}
+
+.closed-card {
+    display: block;
+    width: 150px;
+    height: 100px;
+    border: solid hsl(37, 18%, 11%);
+    background-color: hsl(37, 18%, 61%);
+}
+
+.row {
+    margin-bottom: 10px;
+}
