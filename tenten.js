@@ -36,6 +36,7 @@ cardInfos = cardInfos.concat(cardInfos);
 cardInfos = cardInfos.sort(() => 0.5 - Math.random());
 
 var steps = 0;
+var completed = 0;
 var counter = document.getElementById("counter");
 
 // Main code
@@ -62,13 +63,13 @@ for (let i = 0; i < cards.length; i++) {
 			closeCard(i);
 			previousCard = -1;
 			steps++;
-			counter.textContent = "Steps: " + steps;
+			counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
 			return
 		}
 
 		// Count steps
 		steps++;
-		counter.textContent = "Steps: " + steps;
+		counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
 
 		// Display the card
 		openCard(i);
@@ -77,6 +78,9 @@ for (let i = 0; i < cards.length; i++) {
 		if (previousCard == -1) { // There are no cards opened before.
 			previousCard = i;
 		} else if (cardInfos[previousCard] == cardInfos[i] && i != previousCard) {
+			// Cards match
+			completed++;
+			counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
 			cardClickable[previousCard] = false;
 			cardClickable[i] = false;
 			previousCard = -1;
