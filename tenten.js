@@ -1,22 +1,4 @@
 // Functions
-function shuffle(array) {
-	let currentIndex = array.length, temporaryValue, randomIndex;
-
-	// While there remain elements to shuffle...
-	while (0 !== currentIndex) {
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex -= 1;
-
-		// And swap it with the current element.
-		temporaryValue = array[currentIndex];
-		array[currentIndex] = array[randomIndex];
-		array[randomIndex] = temporaryValue;
-	}
-
-	return array;
-}
-
 function openCard(id) {
 	cards[id].innerHTML = "<p style='text-align: center; font-size: 48px;'>&#x" + cardInfos[id] + ";</p>";
 	cards[id].style.background = "hsl(37, 18%, 91%)";
@@ -36,7 +18,7 @@ var cardClickable = new Array(cards.length);
 var previousCard = -1;
 var closeTimerSet = false;
 
-var emojis = [
+const emojis = [
 	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
 ]
 
@@ -48,12 +30,12 @@ const shuffled = emojis.sort(() => 0.5 - Math.random());
 // Get sub-array of first n elements after shuffled
 var cardInfos = shuffled.slice(0, 12);
 cardInfos = cardInfos.concat(cardInfos);
+cardInfos = cardInfos.sort(() => 0.5 - Math.random());
 
 var steps = 0;
 var counter = document.getElementById("counter");
 
 // Main code
-cardInfos = shuffle(cardInfos);
 
 for (let i = 0; i < cards.length; i++) {
 	// Initialize values
