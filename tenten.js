@@ -41,6 +41,9 @@ var cardInfos = [
 	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
 ];
 
+var steps = 0;
+var counter = document.getElementById("counter");
+
 // Main code
 cardInfos = shuffle(cardInfos);
 
@@ -66,7 +69,14 @@ for (let i = 0; i < cards.length; i++) {
 			// Close the card
 			closeCard(i);
 			previousCard = -1;
+			steps++;
+			counter.textContent = "Steps: " + steps;
+			return
 		}
+
+		// Count steps
+		steps++;
+		counter.textContent = "Steps: " + steps;
 
 		// Display the card
 		openCard(i);
