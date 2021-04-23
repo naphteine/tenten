@@ -36,10 +36,18 @@ var cardClickable = new Array(cards.length);
 var previousCard = -1;
 var closeTimerSet = false;
 
-var cardInfos = [
+var emojis = [
 	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
-	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
-];
+]
+
+var cardInfos = [];
+
+// Shuffle array
+const shuffled = emojis.sort(() => 0.5 - Math.random());
+
+// Get sub-array of first n elements after shuffled
+var cardInfos = shuffled.slice(0, 12);
+cardInfos = cardInfos.concat(cardInfos);
 
 var steps = 0;
 var counter = document.getElementById("counter");
