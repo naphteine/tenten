@@ -20,6 +20,9 @@ var closeTimerSet = false;
 
 const emojis = [
 	"1F600", "1F603", "1F604", "1F923", "1F607", "1F61A", "1F911", "1F47F", "1F971", "1F47A", "1F63A", "1F64A",
+	"1F601", "1F605", "1F618", "1F61D", "1F92B", "1F636", "1F634", "1F637", "1F920", "1F613", "1F60B", "1F649",
+	"1F590", "270B",  "1F918", "1F91F", "1F446",  "270A", "1F450", "1F932", "1F64F", "1F466", "1F467", "1F471",
+	"1F64D", "1F64E", "1F645", "1F646"
 ]
 
 var cardInfos = [];
@@ -36,7 +39,6 @@ var steps = 0;
 var counter = document.getElementById("counter");
 
 // Main code
-
 for (let i = 0; i < cards.length; i++) {
 	// Initialize values
 	cardOpen[i] = false;
