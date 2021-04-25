@@ -17,6 +17,13 @@ function updateCounter(step, complete) {
 	counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
 }
 
+function shuffleAll() {
+	shuffled = emojis.sort(() => 0.5 - Math.random());
+	cardInfos = shuffled.slice(0, 12);
+	cardInfos = cardInfos.concat(cardInfos);
+	cardInfos = cardInfos.sort(() => 0.5 - Math.random());
+}
+
 // Variables
 var cards = document.querySelectorAll(".closed-card");
 var cardOpen = new Array(cards.length);
@@ -34,12 +41,7 @@ const emojis = [
 var cardInfos = [];
 
 // Shuffle array
-var shuffled = emojis.sort(() => 0.5 - Math.random());
-
-// Get sub-array of first n elements after shuffled
-var cardInfos = shuffled.slice(0, 12);
-cardInfos = cardInfos.concat(cardInfos);
-cardInfos = cardInfos.sort(() => 0.5 - Math.random());
+shuffleAll();
 
 var steps = 0;
 var completed = 0;
@@ -99,10 +101,7 @@ for (let i = 0; i < cards.length; i++) {
 						closeCard(j);
 					}
 
-					shuffled = emojis.sort(() => 0.5 - Math.random());
-					cardInfos = shuffled.slice(0, 12);
-					cardInfos = cardInfos.concat(cardInfos);
-					cardInfos = cardInfos.sort(() => 0.5 - Math.random());
+					shuffleAll();
 				}
 			}
 		} else { // Cards not match
