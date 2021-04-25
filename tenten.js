@@ -28,7 +28,7 @@ const emojis = [
 var cardInfos = [];
 
 // Shuffle array
-const shuffled = emojis.sort(() => 0.5 - Math.random());
+var shuffled = emojis.sort(() => 0.5 - Math.random());
 
 // Get sub-array of first n elements after shuffled
 var cardInfos = shuffled.slice(0, 12);
@@ -84,6 +84,26 @@ for (let i = 0; i < cards.length; i++) {
 			cardClickable[previousCard] = false;
 			cardClickable[i] = false;
 			previousCard = -1;
+
+			if (completed >= 12) {
+				let restart = confirm("Restart?");
+
+				if (restart) {
+					completed = 0;
+					steps = 0;
+					counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+
+					for (let j = 0; j < 24; j++) {
+						cardClickable[j] = true;
+						closeCard(j);
+					}
+
+					shuffled = emojis.sort(() => 0.5 - Math.random());
+					cardInfos = shuffled.slice(0, 12);
+					cardInfos = cardInfos.concat(cardInfos);
+					cardInfos = cardInfos.sort(() => 0.5 - Math.random());
+				}
+			}
 		} else { // Cards not match
 			closeTimerSet = true;
 
