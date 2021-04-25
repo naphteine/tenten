@@ -11,6 +11,12 @@ function closeCard(id) {
 	cardOpen[id] = false;
 }
 
+function updateCounter(step, complete) {
+	completed = complete;
+	steps = step;
+	counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+}
+
 // Variables
 var cards = document.querySelectorAll(".closed-card");
 var cardOpen = new Array(cards.length);
@@ -62,14 +68,12 @@ for (let i = 0; i < cards.length; i++) {
 			// Close the card
 			closeCard(i);
 			previousCard = -1;
-			steps++;
-			counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+			updateCounter(++steps, completed);
 			return
 		}
 
 		// Count steps
-		steps++;
-		counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+		updateCounter(++steps, completed);
 
 		// Display the card
 		openCard(i);
@@ -79,8 +83,7 @@ for (let i = 0; i < cards.length; i++) {
 			previousCard = i;
 		} else if (cardInfos[previousCard] == cardInfos[i] && i != previousCard) {
 			// Cards match
-			completed++;
-			counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+			updateCounter(steps, ++completed);
 			cardClickable[previousCard] = false;
 			cardClickable[i] = false;
 			previousCard = -1;
@@ -89,9 +92,7 @@ for (let i = 0; i < cards.length; i++) {
 				let restart = confirm("Restart?");
 
 				if (restart) {
-					completed = 0;
-					steps = 0;
-					counter.textContent = "Count: " + steps + " - Completed: " + completed + "/12";
+					updateCounter(0, 0);
 
 					for (let j = 0; j < 24; j++) {
 						cardClickable[j] = true;
